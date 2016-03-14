@@ -14,6 +14,14 @@ $("#menu-close").click(function(e) {
     e.preventDefault();
     $("#sidebar-wrapper").toggleClass("active");
 });
+$(document).click(function(event) {
+    if (!$(event.target).is("#sidebar-wrapper, #menu-toggle, #menu-toggle .ion-navicon")) {
+        $("#sidebar-wrapper").removeClass("active");
+    }
+});
+$('.sidebar-nav li a').click(function(){
+  $("#sidebar-wrapper").removeClass("active");
+});
 
 // Opens the sidebar menu
 $("#menu-toggle").click(function(e) {
@@ -46,42 +54,24 @@ new WOW().init();
 
 $(document).ready(function() {
  
-  var owl = $("#screenshots");
- 
-  owl.owlCarousel({
-    autoPlay: false,
-    pagination: false,
-    stopOnHover: true,
-  });
- 
-  // Custom Navigation Events
-  $(".next").click(function(){
-    owl.trigger('owl.next');
-  })
-  $(".prev").click(function(){
-    owl.trigger('owl.prev');
-  })
- 
-});
-
-// Testimonial
-
-$(document).ready(function() {
- 
-  $("#review").owlCarousel({
- 
-      slideSpeed : 300,
-      paginationSpeed : 400,
-      singleItem:true,
-      
- 
-      // "singleItem:true" is a shortcut for:
-      // items : 1, 
-      // itemsDesktop : false,
-      // itemsDesktopSmall : false,
-      // itemsTablet: false,
-      // itemsMobile : false
- 
+  var owls = ['trending', 'jk', 'india', 'international'];
+  $.each(owls, function(i, v){
+    $("#" + v).owlCarousel({
+      autoPlay: false,
+      pagination: false,
+      lazyLoad : true,
+      items: 4,
+      autoHeight: true,
+      stopOnHover: true,
+    });
+    
+    $("." + v + " .next").click(function(){
+      $("#" + v).trigger('owl.next');
+    })
+    $("." + v + " .prev").click(function(){
+      trending.trigger('owl.prev');
+    })
+    
   });
  
 });
