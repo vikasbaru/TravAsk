@@ -1,0 +1,559 @@
+   <!-- ****************************** Banner ************************** -->
+
+    <section id="banner" class="text-center">
+        <div class="overlay"></div>
+        <section class="container">
+            <section class="row">
+                <div class="col-md-12">
+                    <div class="headings">
+                        <h1 class="wow animated fadeInDown">Hone your Travel itinerary, Ask <span class="color-brand">TRAV</span>ASK</h1>
+                        <form class="optin" novalidate role="form" action="http://mailthis.to/viku5star@gmail.com">
+                            <div class="row wow animated fadeInLeft">
+                                <div class="col-sm-3">
+                                    <div class="control-group">
+                                        <input class="form-control" id="name" name="name" type="text" placeholder="Name *" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="control-group">
+                                        <input class="form-control" id="number" name="number" type="number" placeholder="Contact Number *" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="control-group">
+                                        <input class="form-control" id="email" name="email" type="email" placeholder="Email Address *" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="dpkerwrap">
+                                        <input class="form-control dpker" id="dd" name="dd" type="text" placeholder="Departure Date">
+                                        <i class="ion-calendar"></i>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 col-md-offset-5 col-sm-4 col-sm-offset-4 clearfix">
+                                    <input type="hidden" name="_subject" value="TravAsk - Enquiry">
+                                    <input type="hidden" name="_after" value="http://localhost:8080/s=y">
+                                    <input type="text" name="_honey" value="" style="display:none">
+                                    <img src="assets/img/ripple.gif" width="24" class="sending hidden" alt="Sending...">
+                                    <button type="submit" id="askButton" class="btn btn-primary btn-lg btn-block m-t-10 m-b-40 wow animated bounceInUp ask">Ask Now <i class="ion-android-send pull-right"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="row">
+                            <div class="col-sm-8 col-sm-offset-2">
+                                <ul class="nav nav-pills nav-justified">
+                                    <li role="presentation" class="active"><a ng-href="#/" data-toggle="tab"><i class="ion-bag"></i> Packages</a></li>
+                                    <li role="presentation"><a ng-href="#/hotels" data-toggle="tab"><i class="ion-android-restaurant"></i> Hotels</a></li>
+                                    <li role="presentation"><a ng-href="#/cabs" data-toggle="tab"><i class="ion-model-s"></i> Cabs</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </section>
+
+    <div class="tab-content">
+
+        <!-- ****************************** Packages Section ************************** -->
+
+        <section role="tabpanel" class="tab-pane active block" id="packages">
+            <section class="container search-pane">
+                <section class="row">
+                    <div class="col-sm-12">
+                        <h2><i class="ion-android-locate"></i> Find Your Package</h2>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-3">
+                        <div class="dpkerwrap">
+                            <input type="text" class="form-control dpker" placeholder="Travel Date">
+                            <i class="ion-calendar"></i>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-control">
+                            <option disabled="disabled" selected="selected">Destination</option>
+                            <optgroup label="J&amp;K">
+                                <option>Gulmarg</option>
+                                <option>Amarnath</option>
+                            </optgroup>
+                            <optgroup label="All India">
+                                <option>Shimla</option>
+                                <option>Goa</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-control">
+                            <option disabled="disabled" selected="selected">Duration</option>
+                            <option>1 Night / 2 Days</option>
+                            <option>2 Nights / 3 Days</option>
+                            <option>3 Nights / 4 Days</option>
+                            <option>4 Nights / 5 Days</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <a href="#" class="btn btn-warning btn-lhg btn-block m-b-40 wow animated bounceInUp">Find <i class="ion-search pull-right"></i></a>
+                    </div>
+                </section>
+                <div class="clearfix"></div>
+            </section>
+
+            <section class="featured p-t-30 p-b-30 trending" ng-controller="trendingPckgs">
+                <section class="container">
+                    <section class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <h2 class="section-title"><i class="ion-arrow-graph-up-right"></i> Trending Packages</h2>
+                                </div>
+                                <div class="col-sm-2 text-right">
+                                    <div class="customNavigation">
+                                        <a class="btn btn-default prev gallery-nav wow animated bounceInLeft"><i class="ion-ios-arrow-left"></i></a> 
+                                        <a class="btn btn-default next gallery-nav wow animated bounceInRight"><i class="ion-ios-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-repeat="pkg in pkgs">
+                                <div id="trending" class="owl-carousel owl-theme packages">
+                                    <div class="item" ng-repeat="(k, v) in pkg" ng-if="v.status == 1">
+                                        <img ng-src="assets/img/{{pkg.images[0]}}" class="img_res wow animated zoomIn">
+                                        <div class="meta">
+                                            <h5>{{pkg.$id}}</h5>
+                                            <p>{{k.toString().replace(" ", " / ").replace("n", " Nights").replace("d", " Days").replace("1 Nights", "1 Night").replace("1 Days", "1 Day")}}</p>
+                                            <ul ng-if="v.amenities.length !=0">
+                                                <li class="text-capitalize" ng-repeat="(k0, v0) in v.amenities"><i class="ion-checkmark"></i> {{v0}}</li>
+                                            </ul>
+                                            <h6>Package Starts @</h6>
+                                            <h3>Rs. {{v.price[0]}}/- <small>per person</small></h3>
+                                        </div>
+                                        <div class="hover">
+                                            <a href="#/details" class="btn btn-default">View Details <i class="ion-information-circled"></i></a>
+                                            <a href="" class="btn btn-default">Book Now <i class="ion-checkmark pull-right"></i></a>
+                                        </div>
+                                    </div>
+                                
+                                </div>	
+                                <directive></directive>
+                            </div>			
+                        </div>
+                    </section>
+                </section>
+            </section><!-- /.featured -->
+
+            <section class="p-t-30 p-b-30 jk">
+                <section class="container">
+                    <section class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <h2 class="section-title"><i class="ion-bag"></i> J&amp;K Packages</h2>
+                                </div>
+                                <div class="col-sm-2 text-right">
+                                    <div class="customNavigation">
+                                        <a class="btn btn-default prev gallery-nav wow animated bounceInLeft"><i class="ion-ios-arrow-left"></i></a> 
+                                        <a class="btn btn-default next gallery-nav wow animated bounceInRight"><i class="ion-ios-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="jk" class="owl-carousel owl-theme packages">
+                                <div class="item">
+                                    <img src="assets/img/package.png" class="img_res wow animated zoomIn">
+                                    <div class="meta">
+                                        <h5>Magestic Kashmir</h5>
+                                        <p>3 Nights / 4 Days</p>
+                                        <ul>
+                                            <li><i class="ion-checkmark"></i> Breakfast</li>
+                                            <li><i class="ion-checkmark"></i> Sightseeing</li>
+                                            <li><i class="ion-checkmark"></i> Transfers</li>
+                                        </ul>
+                                        <h6>Package Starts @</h6>
+                                        <h3>Rs. 9000/- <small>per person</small></h3>
+                                    </div>
+                                    <div class="hover">
+                                        <a href="" class="btn btn-default">View Details <i class="ion-information-circled"></i></a>
+                                        <a href="" class="btn btn-default">Book Now <i class="ion-checkmark pull-right"></i></a>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img src="assets/img/package.png" class="img_res wow animated zoomIn">
+                                    <div class="meta">
+                                        <h5>Magestic Kashmir</h5>
+                                        <p>3 Nights / 4 Days</p>
+                                        <ul>
+                                            <li><i class="ion-checkmark"></i> Breakfast</li>
+                                            <li><i class="ion-checkmark"></i> Sightseeing</li>
+                                            <li><i class="ion-checkmark"></i> Transfers</li>
+                                        </ul>
+                                        <h6>Package Starts @</h6>
+                                        <h3>Rs. 9000/- <small>per person</small></h3>
+                                    </div>
+                                    <div class="hover">
+                                        <a href="" class="btn btn-default">View Details <i class="ion-information-circled"></i></a>
+                                        <a href="" class="btn btn-default">Book Now <i class="ion-checkmark pull-right"></i></a>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img src="assets/img/package.png" class="img_res wow animated zoomIn">
+                                    <div class="meta">
+                                        <h5>Magestic Kashmir</h5>
+                                        <p>3 Nights / 4 Days</p>
+                                        <ul>
+                                            <li><i class="ion-checkmark"></i> Breakfast</li>
+                                            <li><i class="ion-checkmark"></i> Sightseeing</li>
+                                            <li><i class="ion-checkmark"></i> Transfers</li>
+                                        </ul>
+                                        <h6>Package Starts @</h6>
+                                        <h3>Rs. 9000/- <small>per person</small></h3>
+                                    </div>
+                                    <div class="hover">
+                                        <a href="" class="btn btn-default">View Details <i class="ion-information-circled"></i></a>
+                                        <a href="" class="btn btn-default">Book Now <i class="ion-checkmark pull-right"></i></a>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img src="assets/img/package.png" class="img_res wow animated zoomIn">
+                                    <div class="meta">
+                                        <h5>Magestic Kashmir</h5>
+                                        <p>3 Nights / 4 Days</p>
+                                        <ul>
+                                            <li><i class="ion-checkmark"></i> Breakfast</li>
+                                            <li><i class="ion-checkmark"></i> Sightseeing</li>
+                                            <li><i class="ion-checkmark"></i> Transfers</li>
+                                        </ul>
+                                        <h6>Package Starts @</h6>
+                                        <h3>Rs. 9000/- <small>per person</small></h3>
+                                    </div>
+                                    <div class="hover">
+                                        <a href="" class="btn btn-default">View Details <i class="ion-information-circled"></i></a>
+                                        <a href="" class="btn btn-default">Book Now <i class="ion-checkmark pull-right"></i></a>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img src="assets/img/package.png" class="img_res wow animated zoomIn">
+                                    <div class="meta">
+                                        <h5>Magestic Kashmir</h5>
+                                        <p>3 Nights / 4 Days</p>
+                                        <ul>
+                                            <li><i class="ion-checkmark"></i> Breakfast</li>
+                                            <li><i class="ion-checkmark"></i> Sightseeing</li>
+                                            <li><i class="ion-checkmark"></i> Transfers</li>
+                                        </ul>
+                                        <h6>Package Starts @</h6>
+                                        <h3>Rs. 9000/- <small>per person</small></h3>
+                                    </div>
+                                    <div class="hover">
+                                        <a href="" class="btn btn-default">View Details <i class="ion-information-circled"></i></a>
+                                        <a href="" class="btn btn-default">Book Now <i class="ion-checkmark pull-right"></i></a>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img src="assets/img/package.png" class="img_res wow animated zoomIn">
+                                    <div class="meta">
+                                        <h5>Magestic Kashmir</h5>
+                                        <p>3 Nights / 4 Days</p>
+                                        <ul>
+                                            <li><i class="ion-checkmark"></i> Breakfast</li>
+                                            <li><i class="ion-checkmark"></i> Sightseeing</li>
+                                            <li><i class="ion-checkmark"></i> Transfers</li>
+                                        </ul>
+                                        <h6>Package Starts @</h6>
+                                        <h3>Rs. 9000/- <small>per person</small></h3>
+                                    </div>
+                                    <div class="hover">
+                                        <a href="" class="btn btn-default">View Details <i class="ion-information-circled"></i></a>
+                                        <a href="" class="btn btn-default">Book Now <i class="ion-checkmark pull-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>				
+                        </div>
+                    </section>
+                </section>
+            </section><!-- /.jk -->
+
+            <section class="p-t-30 p-b-30 india">
+                <section class="container">
+                    <section class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <h2 class="section-title"><i class="ion-bag"></i> All India Packages</h2>
+                                </div>
+                                <div class="col-sm-2 text-right">
+                                    <div class="customNavigation">
+                                        <a class="btn btn-default prev gallery-nav wow animated bounceInLeft"><i class="ion-ios-arrow-left"></i></a> 
+                                        <a class="btn btn-default next gallery-nav wow animated bounceInRight"><i class="ion-ios-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="india" class="owl-carousel owl-theme packages">
+                                <div class="item">
+                                    <img src="assets/img/package.png" class="img_res wow animated zoomIn">
+                                    <div class="meta">
+                                        <h5>Magestic Kashmir</h5>
+                                        <p>3 Nights / 4 Days</p>
+                                        <ul>
+                                            <li><i class="ion-checkmark"></i> Breakfast</li>
+                                            <li><i class="ion-checkmark"></i> Sightseeing</li>
+                                            <li><i class="ion-checkmark"></i> Transfers</li>
+                                        </ul>
+                                        <h6>Package Starts @</h6>
+                                        <h3>Rs. 9000/- <small>per person</small></h3>
+                                    </div>
+                                    <div class="hover">
+                                        <a href="" class="btn btn-default">View Details <i class="ion-information-circled"></i></a>
+                                        <a href="" class="btn btn-default">Book Now <i class="ion-checkmark pull-right"></i></a>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img src="assets/img/package.png" class="img_res wow animated zoomIn">
+                                    <div class="meta">
+                                        <h5>Magestic Kashmir</h5>
+                                        <p>3 Nights / 4 Days</p>
+                                        <ul>
+                                            <li><i class="ion-checkmark"></i> Breakfast</li>
+                                            <li><i class="ion-checkmark"></i> Sightseeing</li>
+                                            <li><i class="ion-checkmark"></i> Transfers</li>
+                                        </ul>
+                                        <h6>Package Starts @</h6>
+                                        <h3>Rs. 9000/- <small>per person</small></h3>
+                                    </div>
+                                    <div class="hover">
+                                        <a href="" class="btn btn-default">View Details <i class="ion-information-circled"></i></a>
+                                        <a href="" class="btn btn-default">Book Now <i class="ion-checkmark pull-right"></i></a>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img src="assets/img/package.png" class="img_res wow animated zoomIn">
+                                    <div class="meta">
+                                        <h5>Magestic Kashmir</h5>
+                                        <p>3 Nights / 4 Days</p>
+                                        <ul>
+                                            <li><i class="ion-checkmark"></i> Breakfast</li>
+                                            <li><i class="ion-checkmark"></i> Sightseeing</li>
+                                            <li><i class="ion-checkmark"></i> Transfers</li>
+                                        </ul>
+                                        <h6>Package Starts @</h6>
+                                        <h3>Rs. 9000/- <small>per person</small></h3>
+                                    </div>
+                                    <div class="hover">
+                                        <a href="" class="btn btn-default">View Details <i class="ion-information-circled"></i></a>
+                                        <a href="" class="btn btn-default">Book Now <i class="ion-checkmark pull-right"></i></a>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img src="assets/img/package.png" class="img_res wow animated zoomIn">
+                                    <div class="meta">
+                                        <h5>Magestic Kashmir</h5>
+                                        <p>3 Nights / 4 Days</p>
+                                        <ul>
+                                            <li><i class="ion-checkmark"></i> Breakfast</li>
+                                            <li><i class="ion-checkmark"></i> Sightseeing</li>
+                                            <li><i class="ion-checkmark"></i> Transfers</li>
+                                        </ul>
+                                        <h6>Package Starts @</h6>
+                                        <h3>Rs. 9000/- <small>per person</small></h3>
+                                    </div>
+                                    <div class="hover">
+                                        <a href="" class="btn btn-default">View Details <i class="ion-information-circled"></i></a>
+                                        <a href="" class="btn btn-default">Book Now <i class="ion-checkmark pull-right"></i></a>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img src="assets/img/package.png" class="img_res wow animated zoomIn">
+                                    <div class="meta">
+                                        <h5>Magestic Kashmir</h5>
+                                        <p>3 Nights / 4 Days</p>
+                                        <ul>
+                                            <li><i class="ion-checkmark"></i> Breakfast</li>
+                                            <li><i class="ion-checkmark"></i> Sightseeing</li>
+                                            <li><i class="ion-checkmark"></i> Transfers</li>
+                                        </ul>
+                                        <h6>Package Starts @</h6>
+                                        <h3>Rs. 9000/- <small>per person</small></h3>
+                                    </div>
+                                    <div class="hover">
+                                        <a href="" class="btn btn-default">View Details <i class="ion-information-circled"></i></a>
+                                        <a href="" class="btn btn-default">Book Now <i class="ion-checkmark pull-right"></i></a>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img src="assets/img/package.png" class="img_res wow animated zoomIn">
+                                    <div class="meta">
+                                        <h5>Magestic Kashmir</h5>
+                                        <p>3 Nights / 4 Days</p>
+                                        <ul>
+                                            <li><i class="ion-checkmark"></i> Breakfast</li>
+                                            <li><i class="ion-checkmark"></i> Sightseeing</li>
+                                            <li><i class="ion-checkmark"></i> Transfers</li>
+                                        </ul>
+                                        <h6>Package Starts @</h6>
+                                        <h3>Rs. 9000/- <small>per person</small></h3>
+                                    </div>
+                                    <div class="hover">
+                                        <a href="" class="btn btn-default">View Details <i class="ion-information-circled"></i></a>
+                                        <a href="" class="btn btn-default">Book Now <i class="ion-checkmark pull-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>				
+                        </div>
+                    </section>
+                </section>
+            </section><!-- /.india -->
+
+            <section class="p-t-30 p-b-30 international">
+                <section class="container">
+                    <section class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <h2 class="section-title"><i class="ion-bag"></i> International Packages</h2>
+                                </div>
+                                <div class="col-sm-2 text-right">
+                                    <div class="customNavigation">
+                                        <a class="btn btn-default prev gallery-nav wow animated bounceInLeft"><i class="ion-ios-arrow-left"></i></a> 
+                                        <a class="btn btn-default next gallery-nav wow animated bounceInRight"><i class="ion-ios-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="international" class="owl-carousel owl-theme packages">
+                                <div class="item">
+                                    <img src="assets/img/package.png" class="img_res wow animated zoomIn">
+                                    <div class="meta">
+                                        <h5>Magestic Kashmir</h5>
+                                        <p>3 Nights / 4 Days</p>
+                                        <ul>
+                                            <li><i class="ion-checkmark"></i> Breakfast</li>
+                                            <li><i class="ion-checkmark"></i> Sightseeing</li>
+                                            <li><i class="ion-checkmark"></i> Transfers</li>
+                                        </ul>
+                                        <h6>Package Starts @</h6>
+                                        <h3>Rs. 9000/- <small>per person</small></h3>
+                                    </div>
+                                    <div class="hover">
+                                        <a href="" class="btn btn-default">View Details <i class="ion-information-circled"></i></a>
+                                        <a href="" class="btn btn-default">Book Now <i class="ion-checkmark pull-right"></i></a>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img src="assets/img/package.png" class="img_res wow animated zoomIn">
+                                    <div class="meta">
+                                        <h5>Magestic Kashmir</h5>
+                                        <p>3 Nights / 4 Days</p>
+                                        <ul>
+                                            <li><i class="ion-checkmark"></i> Breakfast</li>
+                                            <li><i class="ion-checkmark"></i> Sightseeing</li>
+                                            <li><i class="ion-checkmark"></i> Transfers</li>
+                                        </ul>
+                                        <h6>Package Starts @</h6>
+                                        <h3>Rs. 9000/- <small>per person</small></h3>
+                                    </div>
+                                    <div class="hover">
+                                        <a href="" class="btn btn-default">View Details <i class="ion-information-circled"></i></a>
+                                        <a href="" class="btn btn-default">Book Now <i class="ion-checkmark pull-right"></i></a>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img src="assets/img/package.png" class="img_res wow animated zoomIn">
+                                    <div class="meta">
+                                        <h5>Magestic Kashmir</h5>
+                                        <p>3 Nights / 4 Days</p>
+                                        <ul>
+                                            <li><i class="ion-checkmark"></i> Breakfast</li>
+                                            <li><i class="ion-checkmark"></i> Sightseeing</li>
+                                            <li><i class="ion-checkmark"></i> Transfers</li>
+                                        </ul>
+                                        <h6>Package Starts @</h6>
+                                        <h3>Rs. 9000/- <small>per person</small></h3>
+                                    </div>
+                                    <div class="hover">
+                                        <a href="" class="btn btn-default">View Details <i class="ion-information-circled"></i></a>
+                                        <a href="" class="btn btn-default">Book Now <i class="ion-checkmark pull-right"></i></a>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img src="assets/img/package.png" class="img_res wow animated zoomIn">
+                                    <div class="meta">
+                                        <h5>Magestic Kashmir</h5>
+                                        <p>3 Nights / 4 Days</p>
+                                        <ul>
+                                            <li><i class="ion-checkmark"></i> Breakfast</li>
+                                            <li><i class="ion-checkmark"></i> Sightseeing</li>
+                                            <li><i class="ion-checkmark"></i> Transfers</li>
+                                        </ul>
+                                        <h6>Package Starts @</h6>
+                                        <h3>Rs. 9000/- <small>per person</small></h3>
+                                    </div>
+                                    <div class="hover">
+                                        <a href="" class="btn btn-default">View Details <i class="ion-information-circled"></i></a>
+                                        <a href="" class="btn btn-default">Book Now <i class="ion-checkmark pull-right"></i></a>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img src="assets/img/package.png" class="img_res wow animated zoomIn">
+                                    <div class="meta">
+                                        <h5>Magestic Kashmir</h5>
+                                        <p>3 Nights / 4 Days</p>
+                                        <ul>
+                                            <li><i class="ion-checkmark"></i> Breakfast</li>
+                                            <li><i class="ion-checkmark"></i> Sightseeing</li>
+                                            <li><i class="ion-checkmark"></i> Transfers</li>
+                                        </ul>
+                                        <h6>Package Starts @</h6>
+                                        <h3>Rs. 9000/- <small>per person</small></h3>
+                                    </div>
+                                    <div class="hover">
+                                        <a href="" class="btn btn-default">View Details <i class="ion-information-circled"></i></a>
+                                        <a href="" class="btn btn-default">Book Now <i class="ion-checkmark pull-right"></i></a>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img src="assets/img/package.png" class="img_res wow animated zoomIn">
+                                    <div class="meta">
+                                        <h5>Magestic Kashmir</h5>
+                                        <p>3 Nights / 4 Days</p>
+                                        <ul>
+                                            <li><i class="ion-checkmark"></i> Breakfast</li>
+                                            <li><i class="ion-checkmark"></i> Sightseeing</li>
+                                            <li><i class="ion-checkmark"></i> Transfers</li>
+                                        </ul>
+                                        <h6>Package Starts @</h6>
+                                        <h3>Rs. 9000/- <small>per person</small></h3>
+                                    </div>
+                                    <div class="hover">
+                                        <a href="" class="btn btn-default">View Details <i class="ion-information-circled"></i></a>
+                                        <a href="" class="btn btn-default">Book Now <i class="ion-checkmark pull-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>				
+                        </div>
+                    </section>
+                </section>
+            </section><!-- /.international -->
+        </section>
+
+        <!-- ****************************** Hotels Section ************************** -->
+
+        <section role="tabpanel" class="tab-pane block" id="hotels">
+            <section class="container">
+                <section class="row">
+                    h
+                </section>
+                <div class="clearfix"></div>
+            </section>
+        </section>
+
+        <!-- ****************************** Cabs Section ************************** -->
+
+        <section role="tabpanel" class="tab-pane block" id="cabs">
+            <section class="container">
+                <section class="row">
+                    k
+                </section>
+                <div class="clearfix"></div>
+            </section>
+        </section>
+
+    </div>
