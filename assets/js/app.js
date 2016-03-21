@@ -4,7 +4,8 @@ app.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/home.html'
+        templateUrl: 'views/home.html',
+        controller: 'homeCtrl'
       })
       .when('/hotels', {
         templateUrl: 'views/hotels.html'
@@ -61,11 +62,8 @@ app.controller("detailsCtrl", ["$scope", function($scope){
   
 }]);
 
-app.controller("trendingPckgs", ["$scope", "packages", function($scope, packages) {
-    //$scope.user = "Guest " + Math.round(Math.random() * 100);
-
-    // we add chatMessages array to the scope to be used in our ng-repeat
-    $scope.pkgs = packages;
+app.controller("homeCtrl", ["$scope", "packages", function($scope, packages){
+  $scope.pkgs = packages;
 
     // if the messages are empty, add something for fun!
     $scope.pkgs.$loaded(function() {
