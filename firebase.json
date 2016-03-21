@@ -1,0 +1,9 @@
+{
+  "firebase": "travask",
+  "public": "/",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
